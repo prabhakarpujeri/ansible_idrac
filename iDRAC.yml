@@ -1,0 +1,21 @@
+---
+- hosts: myhosts
+  name: PowerEdge iDRAC Get System Information
+  gather_facts: False
+
+
+  tasks: 
+  - name: get  CPUs
+    idrac: idracip={{idrac_ip}} subsystem=System cmd="{{item}}" 
+    register: cpus
+    with_items:
+      - CPUs 
+      
+  - name: get  CPU tempreture
+    idrac: idracip="{{idrac_ip}}" subsystem=Chassis cmd=CPUTemp CPU="{{item}}" 
+    with_items:
+      - "{{cpus.results[0].stdout}}"
+          
+
+  
+
