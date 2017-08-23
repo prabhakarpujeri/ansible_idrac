@@ -1,5 +1,5 @@
 ---
-- hosts: 100.98.4.29
+- hosts: myhosts
   name: PowerEdge iDRAC Get System Information
   gather_facts: False
 
